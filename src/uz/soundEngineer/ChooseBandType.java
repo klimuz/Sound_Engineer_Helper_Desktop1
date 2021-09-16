@@ -1,30 +1,35 @@
 package uz.soundEngineer;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
-public class ChooseBandType extends JFrame {
+public  class ChooseBandType extends JFrame {
 
     private JMenuBar jMenuBar = new JMenuBar();
     JMenu m1 = new JMenu("File");
     JMenu m2 = new JMenu("Help");
+
     private JButton buttonCancel = new JButton ("Cancel");
     private JButton buttonNext = new JButton("Next");
-
-    private JRadioButton popRock = new JRadioButton("Pop or Rock");
-    private JRadioButton symphOrc = new JRadioButton("Symphonic Orchestra");
+    private JRadioButton popRock = new JRadioButton ("Pop or Rock");
+    private JRadioButton symphOrc = new JRadioButton("Symphonic orchestra");
     private JRadioButton rockOrch = new JRadioButton("Rock + Orchestra");
     private JRadioButton national = new JRadioButton("National");
     private JLabel choosaBand = new JLabel("Choose Band Type:");
+    public void terminateThisWindow(){
+        this.dispose();
+    }
 
-    public ChooseBandType() throws HeadlessException {
+    public ChooseBandType() throws HeadlessException  {
         super("Sound Engineer");
+        Font font = new Font("",Font.BOLD,15);
+
         this.setIconImage(new ImageIcon("img/logo.png").getImage());
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
@@ -40,7 +45,12 @@ public class ChooseBandType extends JFrame {
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                int option = JOptionPane.showConfirmDialog(null,
+                        "Are you really want to quit?", "Confirm", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (option == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
             }
         });
         exit.setAccelerator(KeyStroke.getKeyStroke("ctrl E"));
@@ -84,17 +94,20 @@ public class ChooseBandType extends JFrame {
 
         Container container1 = new Container();
         container1.setLayout(new GridLayout(5, 1, 3, 10));
+        container1.setBackground(Color.green);
         container.add(container1);
         container1.setBounds(350, 100, 150, 150);
         container1.add(choosaBand);
-        choosaBand.setBackground(Color.cyan);
-        //choosaBand.setT(Color.green);
+        choosaBand.setFont(font);
+        Color yellow = new Color(200,250,0);
+
         container1.add(popRock);
         popRock.setSelected(true);
         container1.add(symphOrc);
         container1.add(rockOrch);
         container1.add(national);
         container1.setBackground(Color.green);
+
 
 //Button cancel start
         buttonCancel.setBounds(200, 360, 100, 40);
@@ -119,7 +132,42 @@ public class ChooseBandType extends JFrame {
         buttonNext.setBorderPainted(true);
         buttonNext.setBackground(Color.orange);
         container.add(buttonNext);
+        buttonNext.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedBand = group.getSelection().getActionCommand();
+                switch (selectedBand){
+                    case "1":
+                        DrumTypeSel drumTypeSel = new DrumTypeSel();
+                        drumTypeSel.setVisible(true);
+                        terminateThisWindow();
+                        break;
+                    case "2":
+                        JOptionPane.showMessageDialog(ChooseBandType.this, "Selected band2 is not available yet");
+                            break;
+                    case "3":
+                        JOptionPane.showMessageDialog(ChooseBandType.this, "Selected band3 is not available yet");
+                        break;
+                    case "4":
+                        JOptionPane.showMessageDialog(ChooseBandType.this, "Selected band4 is not available yet");
+                        break;
+                }
+            }
+        });
 //Button next end
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                int option = JOptionPane.showConfirmDialog(null,
+                        "Are you really want to quit?", "Confirm", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (option == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
     }
 
 
