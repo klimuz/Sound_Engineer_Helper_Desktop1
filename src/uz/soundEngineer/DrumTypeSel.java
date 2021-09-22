@@ -138,12 +138,13 @@ public class DrumTypeSel extends JFrame {
         buttonNext.setBackground(Color.orange);
         container.add(buttonNext);
         buttonNext.addActionListener(new ActionListener() {
-            @Override
+           @Override
             public void actionPerformed(ActionEvent e) {
             if (acoustic.isSelected()){
                 AcousticDrums acousticDrums = new AcousticDrums();
                 acousticDrums.setVisible(true);
                 terminateThisWindow();
+
             }else if (electronic.isSelected()){}else {}
 
             }
@@ -165,5 +166,8 @@ public class DrumTypeSel extends JFrame {
             }
         });
     }
+
+
+
 
 }

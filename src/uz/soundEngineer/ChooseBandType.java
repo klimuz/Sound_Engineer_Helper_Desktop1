@@ -20,6 +20,7 @@ public  class ChooseBandType extends JFrame {
     private JRadioButton popRock = new JRadioButton ("Pop or Rock");
     private JRadioButton symphOrc = new JRadioButton("Symphonic orchestra");
     private JRadioButton rockOrch = new JRadioButton("Rock + Orchestra");
+    private JRadioButton natPop = new JRadioButton("National Pop");
     private JRadioButton national = new JRadioButton("National");
     private JLabel choosaBand = new JLabel("Choose Band Type:");
     public void terminateThisWindow(){
@@ -91,22 +92,26 @@ public  class ChooseBandType extends JFrame {
         national.setActionCommand("4");
         national.setBackground(Color.green);
         group.add(national);
+        natPop.setActionCommand("5");
+        natPop.setBackground(Color.green);
+        group.add(natPop);
+
 
         Container container1 = new Container();
-        container1.setLayout(new GridLayout(5, 1, 3, 10));
+        container1.setLayout(new GridLayout(6, 1, 3, 10));
         container1.setBackground(Color.green);
         container.add(container1);
         container1.setBounds(350, 100, 150, 150);
         container1.add(choosaBand);
         choosaBand.setFont(font);
-        Color yellow = new Color(200,250,0);
+
 
         container1.add(popRock);
         popRock.setSelected(true);
         container1.add(symphOrc);
         container1.add(rockOrch);
         container1.add(national);
-        container1.setBackground(Color.green);
+        container1.add(natPop);
 
 
 //Button cancel start
@@ -151,6 +156,8 @@ public  class ChooseBandType extends JFrame {
                     case "4":
                         JOptionPane.showMessageDialog(ChooseBandType.this, "Selected band4 is not available yet");
                         break;
+                    case "5":
+                        JOptionPane.showMessageDialog(ChooseBandType.this, "Selected band5 is not available yet");
                 }
             }
         });
