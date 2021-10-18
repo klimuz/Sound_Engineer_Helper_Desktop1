@@ -8,13 +8,10 @@ import java.io.IOException;
 import java.util.EventObject;
 
 public class AcousticDrums extends JFrame implements ItemListener {
-    //SystemLogic SystemLogic = new SystemLogic();
-
     private JMenuBar jMenuBar = new JMenuBar();
     JMenu m1 = new JMenu("File");
     JMenu m2 = new JMenu("Help");
     private JButton buttonBack = new JButton("Back");
-    private JButton buttonCancel = new JButton("Cancel");
     private JButton buttonApply = new JButton("Apply");
     private JButton buttonNext = new JButton("Next");
     private JLabel defineDrumsLabel = new JLabel("Define Drum channels quantity:");
@@ -26,7 +23,6 @@ public class AcousticDrums extends JFrame implements ItemListener {
     private JLabel floorTomsLabel = new JLabel("Floor Toms:");
     private JLabel snare2Label = new JLabel("Snare2:");
     private JLabel drumChannels = new JLabel("");
-    private JLabel mixerChannels = new JLabel("Mixer Channels: 10");
 
     private JComboBox<String> kicksNumber = new JComboBox();
     private JComboBox<String> snaresNumber = new JComboBox();
@@ -211,10 +207,9 @@ public class AcousticDrums extends JFrame implements ItemListener {
         overNumber.setBounds(360, 35, 40, 20);
         container.add(overNumber);
 
-        drumChannels.setBounds(700, 5, 100, 25);
+        drumChannels.setBounds(650, 5, 150, 25);
         container.add(drumChannels);
-        mixerChannels.setBounds(650, 30, 120, 25);
-        container.add(mixerChannels);
+
 //Elements end
 
 //Button apply start
@@ -282,10 +277,7 @@ public class AcousticDrums extends JFrame implements ItemListener {
                     SystemLogic.drumStrips.add("Over1");
                     SystemLogic.drumStrips.add("Over2");
                 }
-                drumChannels.setText("Drums: " + SystemLogic.drumStrips.size());
-                for (String s : SystemLogic.drumStrips){
-                    System.out.println(s);
-                }
+                drumChannels.setText("Drum Channels: " + SystemLogic.drumStrips.size());
             }
         });
 //Button apply end
@@ -307,26 +299,6 @@ public class AcousticDrums extends JFrame implements ItemListener {
         });
 //Button back end
 
-//Button cancel start
-        buttonCancel.setBounds(374, 360, 100, 40);
-        buttonCancel.setBorderPainted(true);
-        buttonCancel.setBackground(Color.orange);
-        container.add(buttonCancel);
-        buttonCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null,
-                        "Are you really want to quit?", "Confirm", JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
-                if (option == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
-            }
-
-
-        });
-//Button cancel end
-
 //Button next start
         buttonNext.setBounds(640, 360, 100, 40);
         buttonNext.setBorderPainted(true);
@@ -336,8 +308,8 @@ public class AcousticDrums extends JFrame implements ItemListener {
         buttonNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                DefineInstruments.buttonDrums.setText("Drums:" + SystemLogic.drumStrips.size());
+                terminateThisWindow();
             }
         });
 //Button next end

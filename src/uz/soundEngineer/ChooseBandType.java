@@ -17,12 +17,12 @@ public  class ChooseBandType extends JFrame {
 
     private JButton buttonCancel = new JButton ("Cancel");
     private JButton buttonNext = new JButton("Next");
-    private JRadioButton popRock = new JRadioButton ("Pop or Rock");
+    private JRadioButton popRock = new JRadioButton ("Pop/Rock/Jazz");
     private JRadioButton symphOrc = new JRadioButton("Symphonic orchestra");
     private JRadioButton rockOrch = new JRadioButton("Rock + Orchestra");
     private JRadioButton natPop = new JRadioButton("National Pop");
     private JRadioButton national = new JRadioButton("National");
-    private JLabel choosaBand = new JLabel("Choose Band Type:");
+    private JLabel choosaBand = new JLabel("Choose Show Type:");
     public void terminateThisWindow(){
         this.dispose();
     }
@@ -76,6 +76,7 @@ public  class ChooseBandType extends JFrame {
         }
 //background image end
 
+//Elements start
         Container container = this.getContentPane();
         container.setLayout(null);
 
@@ -112,7 +113,7 @@ public  class ChooseBandType extends JFrame {
         container1.add(rockOrch);
         container1.add(national);
         container1.add(natPop);
-
+//Elements end
 
 //Button cancel start
         buttonCancel.setBounds(200, 360, 100, 40);
@@ -143,8 +144,8 @@ public  class ChooseBandType extends JFrame {
                 String selectedBand = group.getSelection().getActionCommand();
                 switch (selectedBand){
                     case "1":
-                        DrumTypeSel drumTypeSel = new DrumTypeSel();
-                        drumTypeSel.setVisible(true);
+                        DefineInstruments defineInstruments = new DefineInstruments();
+                        defineInstruments.setVisible(true);
                         terminateThisWindow();
                         break;
                     case "2":

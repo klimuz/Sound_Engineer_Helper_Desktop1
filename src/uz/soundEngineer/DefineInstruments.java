@@ -14,13 +14,13 @@ public class DefineInstruments extends JFrame{
     JMenu m1 = new JMenu("File");
     JMenu m2 = new JMenu("Help");
     public static JButton buttonDrums =new JButton("Drums");
-    public JButton buttonGuitars =new JButton("Guitars");
-    public JButton buttonSynths =new JButton("Synths");
-    public JButton buttonPercuss =new JButton("Percussion");
-    public JButton buttonStrings =new JButton("Strings");
-    public JButton buttonBrass =new JButton("Brass");
-    public JButton buttonVocals =new JButton("Vocals");
-    public JButton buttonOthers =new JButton("Others");
+    public static JButton buttonGuitars =new JButton("Guitars");
+    public static JButton buttonSynths =new JButton("Synths");
+    public static JButton buttonPercuss =new JButton("Percussion");
+    public static JButton buttonStrings =new JButton("Strings");
+    public static JButton buttonBrass =new JButton("Brass");
+    public static JButton buttonVocals =new JButton("Vocals");
+    public static JButton buttonOthers =new JButton("Others");
     private JButton buttonBack =new JButton("Back");
     private JButton buttonCancel =new JButton("Cancel");
     private JButton buttonNext =new JButton("Next");
@@ -113,6 +113,13 @@ public class DefineInstruments extends JFrame{
         buttonOthers.setBackground(Color.green);
         gridContainer.add(buttonOthers);
         container.add(gridContainer);
+        buttonGuitars.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Guitars guitars = new Guitars();
+                guitars.setVisible(true);
+            }
+        });
 //elements end
 
 //Button cancel start

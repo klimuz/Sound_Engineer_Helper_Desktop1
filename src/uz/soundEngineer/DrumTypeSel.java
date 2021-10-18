@@ -14,13 +14,12 @@ public class DrumTypeSel extends JFrame {
     JMenu m1 = new JMenu("File");
     JMenu m2 = new JMenu("Help");
     private JButton buttonBack = new JButton("Back");
-    private JButton buttonCancel = new JButton("Cancel");
     private JButton buttonNext = new JButton("Next");
     private JLabel chooseDrumsType = new JLabel("Choose drums type:");
     private JRadioButton acoustic = new JRadioButton("Acoustic drum kit");
     private JRadioButton electronic = new JRadioButton("Electronic drum kit");
-    private JRadioButton noDrums = new JRadioButton("No drum kit (the drum part");
-    private JLabel backtrack = new JLabel("is recorded in the backtrack)");
+    private JRadioButton noDrums = new JRadioButton("No drum kit (drum parts");
+    private JLabel backtrack = new JLabel("are recorded in the backtrack)");
     public void terminateThisWindow(){
         this.dispose();
     }
@@ -104,33 +103,11 @@ public class DrumTypeSel extends JFrame {
         buttonBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseBandType chooseBandType = new ChooseBandType();
-                chooseBandType.setVisible(true);
                 terminateThisWindow();
 
             }
         });
 //Button back end
-
-//Button cancel start
-        buttonCancel.setBounds(374, 360, 100, 40);
-        buttonCancel.setBorderPainted(true);
-        buttonCancel.setBackground(Color.orange);
-        container.add(buttonCancel);
-        buttonCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null,
-                        "Are you really want to quit?", "Confirm", JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
-                if (option == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
-            }
-
-
-        });
-//Button cancel end
 
 //Button next start
         buttonNext.setBounds(640, 360, 100, 40);
@@ -145,7 +122,15 @@ public class DrumTypeSel extends JFrame {
                 acousticDrums.setVisible(true);
                 terminateThisWindow();
 
-            }else if (electronic.isSelected()){}else {}
+            }else if (electronic.isSelected()){
+                ElDrums elDrums = new ElDrums();
+                elDrums.setVisible(true);
+                terminateThisWindow();
+            }else {
+                SystemLogic.drumStrips.clear();
+                DefineInstruments.buttonDrums.setText("Drums:0");
+                terminateThisWindow();
+            }
 
             }
         });
