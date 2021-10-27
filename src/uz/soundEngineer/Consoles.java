@@ -32,7 +32,7 @@ public class Consoles extends JFrame {
     public Consoles() throws HeadlessException {
         super("Sound Engineer");
         this.setBounds(854, 480, 500, 300);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Container container = this.getContentPane();
         container.setLayout(new GridLayout(10, 2, 3, 3));
@@ -160,6 +160,9 @@ public class Consoles extends JFrame {
                         JOptionPane.QUESTION_MESSAGE);
                 if (option == JOptionPane.YES_OPTION) {
                     System.exit(0);
+                }else if (option == JOptionPane.NO_OPTION){
+                    Consoles consoles = new Consoles();
+                    consoles.setVisible(true);
                 }
             }
         });

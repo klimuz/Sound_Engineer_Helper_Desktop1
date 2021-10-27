@@ -35,7 +35,7 @@ public  class ChooseBandType extends JFrame {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
         this.setBounds(dimension.width/2-350, dimension.height/2-250, 854, 480);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
         m1.add(new JMenuItem("Open", 'O'));
@@ -173,6 +173,9 @@ public  class ChooseBandType extends JFrame {
                         JOptionPane.QUESTION_MESSAGE);
                 if (option == JOptionPane.YES_OPTION) {
                     System.exit(0);
+                }else if (option == JOptionPane.NO_OPTION){
+                    AcousticDrums acousticDrums = new AcousticDrums();
+                    acousticDrums.setVisible(true);
                 }
             }
         });
