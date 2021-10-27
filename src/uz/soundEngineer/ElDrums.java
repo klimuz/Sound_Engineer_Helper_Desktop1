@@ -31,7 +31,7 @@ public class ElDrums extends JFrame implements ItemListener {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
         this.setBounds(dimension.width / 2 - 350, dimension.height / 2 - 250, 854, 480);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
         m1.add(new JMenuItem("Open", 'O'));
@@ -47,6 +47,9 @@ public class ElDrums extends JFrame implements ItemListener {
                         JOptionPane.QUESTION_MESSAGE);
                 if (option == JOptionPane.YES_OPTION) {
                     System.exit(0);
+                }else if (option == JOptionPane.NO_OPTION){
+                    ElDrums elDrums = new ElDrums();
+                    elDrums.setVisible(true);
                 }
             }
         });

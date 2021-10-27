@@ -38,7 +38,7 @@ public class DefineInstruments extends JFrame{
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
         this.setBounds(dimension.width / 2 - 350, dimension.height / 2 - 250, 854, 480);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         m1.add(new JMenuItem("Open", 'O'));
         m1.add(new JMenuItem("Save", 'S'));
@@ -120,6 +120,21 @@ public class DefineInstruments extends JFrame{
                 guitars.setVisible(true);
             }
         });
+        buttonSynths.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Synths synths = new Synths();
+                synths.setVisible(true);
+            }
+
+        });
+        buttonPercuss.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Percussion percussion = new Percussion();
+                percussion.setVisible(true);
+            }
+        });
 //elements end
 
 //Button cancel start
@@ -163,6 +178,9 @@ public class DefineInstruments extends JFrame{
                         JOptionPane.QUESTION_MESSAGE);
                 if (option == JOptionPane.YES_OPTION) {
                     System.exit(0);
+                }else if (option == JOptionPane.NO_OPTION){
+                    DefineInstruments defineInstruments = new DefineInstruments();
+                    defineInstruments.setVisible(true);
                 }
             }
         });
