@@ -202,8 +202,9 @@ public class Synths extends JFrame implements ItemListener {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     DefineInstruments.buttonSynths.setText("Synths:" + SystemLogic.synthStrips.size());
+                    DefineInstruments.numChannels.setText("All Channels:" + SystemLogic.CommonChannels());
                     terminateThisWindow();
-                    }
+                }
 
             });
 //Button next end

@@ -127,7 +127,7 @@ public class Percussion extends JFrame implements ItemListener {
         congasNumber.addItem("2");
         congasNumber.addItem("3");
         congasNumber.addItemListener(this);
-        if (!SystemLogic.percussionStrips.contains("Cng2") && SystemLogic.percussionStrips.contains("Cng1")){
+        if (SystemLogic.percussionStrips.contains("Cong")){
             congasNumber.setSelectedItem("1");
         }else if (!SystemLogic.percussionStrips.contains("Cng3") && SystemLogic.percussionStrips.contains("Cng2")){
             congasNumber.setSelectedItem("2");
@@ -398,7 +398,7 @@ public class Percussion extends JFrame implements ItemListener {
                         SystemLogic.percussionStrips.add("Tab3");
                         break;
                 }
-                String nagoraSel = tablaNumber.getSelectedItem().toString();
+                String nagoraSel = nagoraNumber.getSelectedItem().toString();
                 switch (nagoraSel) {
                     case "1":
                         SystemLogic.percussionStrips.add("Nago");
@@ -423,7 +423,7 @@ public class Percussion extends JFrame implements ItemListener {
                         SystemLogic.percussionStrips.add("Jam2");
                         break;
                 }
-                String otherSel = doyraNumber.getSelectedItem().toString();
+                String otherSel = othersNumber.getSelectedItem().toString();
                 switch (otherSel) {
                     case "1":
                         SystemLogic.percussionStrips.add("Perc");
@@ -454,7 +454,7 @@ public class Percussion extends JFrame implements ItemListener {
 
                 buttonNext.setEnabled(true);
                 numChannels.setText("Percussion Channels: " + SystemLogic.percussionStrips.size());
-                System.out.println(SystemLogic.percussionStrips);
+               // System.out.println(SystemLogic.percussionStrips);
             }
         });
 //Button apply end
@@ -484,6 +484,7 @@ public class Percussion extends JFrame implements ItemListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefineInstruments.buttonPercuss.setText("Percussion:" + SystemLogic.percussionStrips.size());
+                DefineInstruments.numChannels.setText("All Channels:" + SystemLogic.CommonChannels());
                 terminateThisWindow();
             }
 

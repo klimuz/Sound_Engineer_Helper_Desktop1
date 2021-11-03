@@ -18,13 +18,14 @@ public class DefineInstruments extends JFrame{
     public static JButton buttonSynths =new JButton("Synths");
     public static JButton buttonPercuss =new JButton("Percussion");
     public static JButton buttonStrings =new JButton("Strings");
-    public static JButton buttonBrass =new JButton("Brass");
+    public static JButton buttonBrass =new JButton("Brass&Woods");
     public static JButton buttonVocals =new JButton("Vocals");
     public static JButton buttonOthers =new JButton("Others");
     private JButton buttonBack =new JButton("Back");
     private JButton buttonCancel =new JButton("Cancel");
     private JButton buttonNext =new JButton("Next");
     private JLabel define = new JLabel("Define instruments:");
+    public static JLabel numChannels = new JLabel("");
     public void terminateThisWindow(){
         this.dispose();
     }
@@ -33,12 +34,10 @@ public class DefineInstruments extends JFrame{
         super("Sound Engineer");
         Font font = new Font("", Font.BOLD, 30);
 
-
         this.setIconImage(new ImageIcon("img/logo.png").getImage());
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
         this.setBounds(dimension.width / 2 - 350, dimension.height / 2 - 250, 854, 480);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         m1.add(new JMenuItem("Open", 'O'));
         m1.add(new JMenuItem("Save", 'S'));
@@ -86,6 +85,9 @@ public class DefineInstruments extends JFrame{
         define.setBounds(250, 20, 300, 40);
         define.setForeground(Color.orange);
         container.add(define);
+        numChannels.setBounds(650, 5, 150, 25);
+        numChannels.setForeground(Color.yellow);
+        container.add(numChannels);
         Container gridContainer = new Container();
         gridContainer.setLayout(new GridLayout(2, 4, 10, 20));
         gridContainer.setBounds(150, 100, 500, 150);
@@ -135,6 +137,34 @@ public class DefineInstruments extends JFrame{
                 percussion.setVisible(true);
             }
         });
+        buttonStrings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Stringed stringed = new Stringed();
+                stringed.setVisible(true);
+            }
+        });
+        buttonBrass.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WoodsBrass woodsBrass = new WoodsBrass();
+                woodsBrass.setVisible(true);
+            }
+        });
+        buttonVocals.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Vocals vocals = new Vocals();
+                vocals.setVisible(true);
+            }
+        });
+        buttonOthers.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Others others = new Others();
+                others.setVisible(true);
+            }
+        });
 //elements end
 
 //Button cancel start
@@ -165,6 +195,8 @@ public class DefineInstruments extends JFrame{
         buttonNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Consoles consoles = new Consoles();
+                consoles.setVisible(true);
                  }
         });
 //Button next end

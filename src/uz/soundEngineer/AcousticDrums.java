@@ -309,6 +309,7 @@ public class AcousticDrums extends JFrame implements ItemListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefineInstruments.buttonDrums.setText("Drums:" + SystemLogic.drumStrips.size());
+                DefineInstruments.numChannels.setText("All Channels:" + SystemLogic.CommonChannels());
                 terminateThisWindow();
             }
         });

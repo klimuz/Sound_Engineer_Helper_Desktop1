@@ -236,6 +236,7 @@ public class Guitars extends JFrame implements ItemListener {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     DefineInstruments.buttonGuitars.setText("Guitars:" + SystemLogic.guitarStrips.size());
+                    DefineInstruments.numChannels.setText("All Channels:" + SystemLogic.CommonChannels());
                     terminateThisWindow();
                 }
             });
