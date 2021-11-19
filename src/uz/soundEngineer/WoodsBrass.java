@@ -45,7 +45,7 @@ public class WoodsBrass extends JFrame implements ItemListener {
 
 
     public WoodsBrass() throws HeadlessException {
-        super("Sound Engineer");
+        super("Sound Engineer  " + SystemLogic.sceneName);
         Font font = new Font("",Font.BOLD,20);
         this.setIconImage(new ImageIcon("img/logo.png").getImage());
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -539,7 +539,6 @@ public class WoodsBrass extends JFrame implements ItemListener {
 
                 buttonNext.setEnabled(true);
                 numChannels.setText("Wind Channels: " + SystemLogic.windStrips.size());
-                System.out.println(SystemLogic.windStrips);
             }
         });
 //Button apply end

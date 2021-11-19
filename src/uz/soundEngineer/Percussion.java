@@ -46,7 +46,7 @@ public class Percussion extends JFrame implements ItemListener {
 
 
     public Percussion() throws HeadlessException {
-        super("Sound Engineer");
+        super("Sound Engineer  " + SystemLogic.sceneName);
         Font font = new Font("",Font.BOLD,20);
         this.setIconImage(new ImageIcon("img/logo.png").getImage());
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -454,7 +454,6 @@ public class Percussion extends JFrame implements ItemListener {
 
                 buttonNext.setEnabled(true);
                 numChannels.setText("Percussion Channels: " + SystemLogic.percussionStrips.size());
-               // System.out.println(SystemLogic.percussionStrips);
             }
         });
 //Button apply end

@@ -29,7 +29,7 @@ public class Vocals extends JFrame implements ItemListener {
 
 
     public Vocals() throws HeadlessException {
-        super("Sound Engineer");
+        super("Sound Engineer  " + SystemLogic.sceneName);
         Font font = new Font("",Font.BOLD,20);
         this.setIconImage(new ImageIcon("img/logo.png").getImage());
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -340,8 +340,6 @@ public class Vocals extends JFrame implements ItemListener {
                 buttonNext.setEnabled(true);
                 leadCannels.setText("Lead Channels: " + (SystemLogic.leadVocStrips.size()));
                 backCannels.setText("Back Channels: " + (SystemLogic.backVocStrips.size()));
-                System.out.println(SystemLogic.backVocStrips);
-                System.out.println(SystemLogic.leadVocStrips);
             }
         });
 //Button apply end

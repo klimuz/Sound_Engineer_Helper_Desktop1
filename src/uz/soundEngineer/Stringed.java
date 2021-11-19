@@ -31,7 +31,7 @@ public class Stringed extends JFrame implements ItemListener {
     }
 
     public Stringed() throws HeadlessException {
-        super("Sound Engineer");
+        super("Sound Engineer  " + SystemLogic.sceneName);
         Font font = new Font("",Font.BOLD,20);
         this.setIconImage(new ImageIcon("img/logo.png").getImage());
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -536,7 +536,6 @@ public class Stringed extends JFrame implements ItemListener {
 
                 buttonNext.setEnabled(true);
                 numChannels.setText("Stringed Channels: " + SystemLogic.stringedStrips.size());
-                System.out.println(SystemLogic.stringedStrips);
             }
         });
 //Button apply end

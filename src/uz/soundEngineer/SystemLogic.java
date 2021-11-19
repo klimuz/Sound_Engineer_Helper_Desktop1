@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SystemLogic {
-    public static ArrayList mixerStrips = new ArrayList(65);
+    public static String sceneName = "";
     public static ArrayList<String> drumStrips = new ArrayList<>(Arrays.asList("Kick", "Sn1Top", "Sn1Bot", "Sn2",
             "Hat", "Tom1", "Tom2", "FlTom", "Over1", "Over2"));
     public static ArrayList<String> guitarStrips = new ArrayList<>(Arrays.asList("Bass", "EGtr", "AGtr"));
@@ -15,14 +15,16 @@ public class SystemLogic {
     public static ArrayList<String> leadVocStrips = new ArrayList();
     public static ArrayList<String> backVocStrips = new ArrayList();
     public static ArrayList<String> otherStrips = new ArrayList();
+    public static ArrayList<String> outStrips = new ArrayList<>(Arrays.asList("Ramp", "SF",
+            "Dr", "Keys", "Gtr", "Per", "FF", "Sub", "FohL", "FohR"));
+    public static int string;
 
 
-   public static void setStrips(){
-        mixerStrips.add(0,"Unnamed");
-        }
-   public static int CommonChannels(){
+   public static Integer CommonChannels(){
        int sumChan = (drumStrips.size() + guitarStrips.size() + synthStrips.size() + percussionStrips.size()
        + stringedStrips.size() + windStrips.size() + leadVocStrips.size() + backVocStrips.size() + otherStrips.size());
        return sumChan;
+
    }
+
 }

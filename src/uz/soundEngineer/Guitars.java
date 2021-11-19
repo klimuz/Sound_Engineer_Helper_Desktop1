@@ -28,7 +28,7 @@ public class Guitars extends JFrame implements ItemListener {
     }
 
     public Guitars() throws HeadlessException {
-        super("Sound Engineer");
+        super("Sound Engineer  " + SystemLogic.sceneName);
         Font font = new Font("", Font.BOLD, 18);
         Font font1 = new Font("", Font.BOLD, 15);
         this.setIconImage(new ImageIcon("img/logo.png").getImage());
@@ -206,7 +206,6 @@ public class Guitars extends JFrame implements ItemListener {
                     }
                     buttonNext.setEnabled(true);
                     guitarChannels.setText("Guitar Channels: " + SystemLogic.guitarStrips.size());
-                    System.out.println(SystemLogic.guitarStrips);
                 }
             });
 //Button apply end

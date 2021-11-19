@@ -32,7 +32,7 @@ public class Others extends JFrame implements ItemListener {
 
 
     public Others() throws HeadlessException {
-        super("Sound Engineer");
+        super("Sound Engineer  " + SystemLogic.sceneName);
         Font font = new Font("",Font.BOLD,20);
         this.setIconImage(new ImageIcon("img/logo.png").getImage());
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -513,7 +513,6 @@ public class Others extends JFrame implements ItemListener {
                 }
                 buttonNext.setEnabled(true);
                 otherCannels.setText("Other Channels: " + (SystemLogic.otherStrips.size()));
-                System.out.println(SystemLogic.otherStrips);
             }
         });
 //Button apply end

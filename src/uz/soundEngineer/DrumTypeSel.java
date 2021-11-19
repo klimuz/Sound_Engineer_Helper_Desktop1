@@ -27,7 +27,7 @@ public class DrumTypeSel extends JFrame {
 
 
     public DrumTypeSel() throws HeadlessException{
-        super("Sound Engineer");
+        super("Sound Engineer  " + SystemLogic.sceneName);
         Font font = new Font("",Font.BOLD,20);
         this.setIconImage(new ImageIcon("img/logo.png").getImage());
         Toolkit toolkit = Toolkit.getDefaultToolkit();

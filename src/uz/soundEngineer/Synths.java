@@ -29,7 +29,7 @@ public class Synths extends JFrame implements ItemListener {
 
 
         public Synths() throws HeadlessException {
-            super("Sound Engineer");
+            super("Sound Engineer  " + SystemLogic.sceneName);
             Font font = new Font("",Font.BOLD,20);
             this.setIconImage(new ImageIcon("img/logo.png").getImage());
             Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -172,7 +172,6 @@ public class Synths extends JFrame implements ItemListener {
                     }
                     buttonNext.setEnabled(true);
                     synthChannels.setText("Synth Channels: " + SystemLogic.synthStrips.size());
-                    System.out.println(SystemLogic.synthStrips);
                 }
             });
 //Button apply end

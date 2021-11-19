@@ -17,18 +17,22 @@ public  class ChooseBandType extends JFrame {
 
     private JButton buttonCancel = new JButton ("Cancel");
     private JButton buttonNext = new JButton("Next");
+    private JButton buttonEnter = new JButton("Enter");
     private JRadioButton popRock = new JRadioButton ("Pop/Rock/Jazz");
     private JRadioButton symphOrc = new JRadioButton("Symphonic orchestra");
     private JRadioButton rockOrch = new JRadioButton("Rock + Orchestra");
     private JRadioButton natPop = new JRadioButton("National Pop");
     private JRadioButton national = new JRadioButton("National");
+    private JTextField textField = new JTextField();
+    private JLabel typeName = new JLabel("Type Scene Name:");
     private JLabel choosaBand = new JLabel("Choose Show Type:");
+    private JLabel sceneLabel = new JLabel("Scene:  " + SystemLogic.sceneName);
     public void terminateThisWindow(){
         this.dispose();
     }
 
     public ChooseBandType() throws HeadlessException  {
-        super("Sound Engineer");
+        super("Sound Engineer  " + SystemLogic.sceneName);
         Font font = new Font("",Font.BOLD,15);
 
         this.setIconImage(new ImageIcon("img/logo.png").getImage());
@@ -97,23 +101,47 @@ public  class ChooseBandType extends JFrame {
         natPop.setBackground(Color.green);
         group.add(natPop);
 
-
+        Font font1 = new Font("",Font.BOLD,20);
+        sceneLabel.setFont(font1);
+        sceneLabel.setForeground(Color.orange);
+        sceneLabel.setBounds(320, 35, 400, 30);
+        container.add(sceneLabel);
         Container container1 = new Container();
-        container1.setLayout(new GridLayout(6, 1, 3, 10));
+        container1.setLayout(new GridLayout(8, 1, 3, 10));
         container1.setBackground(Color.green);
         container.add(container1);
-        container1.setBounds(350, 100, 150, 150);
-        container1.add(choosaBand);
+        container1.setBounds(350, 90, 150, 230);
+        typeName.setFont(font);
+        container1.add(typeName);
+        textField.setBounds(0,0,150,30);
+        container1.add(textField);
         choosaBand.setFont(font);
-
-
+        container1.add(choosaBand);
         container1.add(popRock);
         popRock.setSelected(true);
         container1.add(symphOrc);
         container1.add(rockOrch);
         container1.add(national);
         container1.add(natPop);
+
 //Elements end
+
+//Button enter start
+        buttonEnter.setBounds(500, 120, 65, 20);
+        buttonEnter.setBackground(Color.cyan);
+        container.add(buttonEnter);
+        buttonEnter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SystemLogic.sceneName = textField.getText();
+                ChooseBandType chooseBandType = new ChooseBandType();
+                chooseBandType.setVisible(true);
+                terminateThisWindow();
+                textField.setText(SystemLogic.sceneName);
+
+            }
+        });
+//Button enter end
 
 //Button cancel start
         buttonCancel.setBounds(200, 360, 100, 40);

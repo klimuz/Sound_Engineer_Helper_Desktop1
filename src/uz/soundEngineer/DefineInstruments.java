@@ -31,7 +31,7 @@ public class DefineInstruments extends JFrame{
     }
 
     public DefineInstruments() throws HeadlessException {
-        super("Sound Engineer");
+        super("Sound Engineer  " + SystemLogic.sceneName);
         Font font = new Font("", Font.BOLD, 30);
 
         this.setIconImage(new ImageIcon("img/logo.png").getImage());
@@ -175,12 +175,9 @@ public class DefineInstruments extends JFrame{
         buttonCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null,
-                        "Are you really want to quit?", "Confirm", JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
-                if (option == JOptionPane.YES_OPTION) {
-                    terminateThisWindow();
-                }
+                ChooseBandType chooseBandType = new ChooseBandType();
+                chooseBandType.setVisible(true);
+                terminateThisWindow();
             }
 
 
