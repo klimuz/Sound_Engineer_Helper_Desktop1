@@ -123,7 +123,6 @@ public  class ChooseBandType extends JFrame {
         container1.add(rockOrch);
         container1.add(national);
         container1.add(natPop);
-
 //Elements end
 
 //Button enter start
@@ -137,8 +136,6 @@ public  class ChooseBandType extends JFrame {
                 ChooseBandType chooseBandType = new ChooseBandType();
                 chooseBandType.setVisible(true);
                 terminateThisWindow();
-                textField.setText(SystemLogic.sceneName);
-
             }
         });
 //Button enter end

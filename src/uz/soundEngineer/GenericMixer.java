@@ -17,6 +17,14 @@ public class GenericMixer {
         inputStrips.add(0, mixerName);
         inputStrips.addAll(SystemLogic.drumStrips);
         inputStrips.addAll(SystemLogic.guitarStrips);
+        inputStrips.addAll(SystemLogic.synthStrips);
+        inputStrips.addAll(SystemLogic.percussionStrips);
+        inputStrips.addAll(SystemLogic.stringedStrips);
+        inputStrips.addAll(SystemLogic.windStrips);
+        inputStrips.addAll(SystemLogic.leadVocStrips);
+        inputStrips.addAll(SystemLogic.backVocStrips);
+        inputStrips.addAll(SystemLogic.extraStrips);
+        inputStrips.addAll(SystemLogic.omniStrips);
         System.out.println(inputStrips);
     }
     public void populateOutputs(){

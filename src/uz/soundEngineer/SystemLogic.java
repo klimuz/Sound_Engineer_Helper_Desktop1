@@ -14,15 +14,13 @@ public class SystemLogic {
     public static ArrayList<String> windStrips = new ArrayList();
     public static ArrayList<String> leadVocStrips = new ArrayList();
     public static ArrayList<String> backVocStrips = new ArrayList();
-    public static ArrayList<String> otherStrips = new ArrayList();
+    public static ArrayList<String> omniStrips = new ArrayList();
+    public static ArrayList<String> extraStrips = new ArrayList();
     public static ArrayList<String> outStrips = new ArrayList<>(Arrays.asList("Ramp", "SF",
             "Dr", "Keys", "Gtr", "Per", "FF", "Sub", "FohL", "FohR"));
-    public static int string;
-
-
-   public static Integer CommonChannels(){
+    public static Integer CommonChannels(){
        int sumChan = (drumStrips.size() + guitarStrips.size() + synthStrips.size() + percussionStrips.size()
-       + stringedStrips.size() + windStrips.size() + leadVocStrips.size() + backVocStrips.size() + otherStrips.size());
+       + stringedStrips.size() + windStrips.size() + leadVocStrips.size() + backVocStrips.size() + omniStrips.size() + extraStrips.size());
        return sumChan;
 
    }

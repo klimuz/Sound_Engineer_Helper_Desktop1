@@ -19,12 +19,18 @@ public class Others extends JFrame implements ItemListener {
     private JLabel dJLabel = new JLabel("Stereo DJ");
     private JLabel screenLabel = new JLabel("Screen");
     private JLabel extraLabel = new JLabel("Extra");
+    private JLabel otherCannels = new JLabel("");
 
     private JComboBox<String> roomNumber = new JComboBox();
     private JComboBox<String> dJNumber = new JComboBox();
     private JComboBox<String> screenNumber = new JComboBox();
     private JComboBox<String> extraNumber = new JComboBox();
-    private JLabel otherCannels = new JLabel("");
+
+    private JCheckBox djOnStage = new JCheckBox("On Stage");
+    private JCheckBox screenOnStage = new JCheckBox("On Stage");
+    private JCheckBox extraOnStage = new JCheckBox("On Stage");
+    private JCheckBox roomOnStage = new JCheckBox("On Stage");
+
     public void terminateThisWindow(){
         this.dispose();
     }
@@ -87,6 +93,9 @@ public class Others extends JFrame implements ItemListener {
         Container numContainer = new Container();
         numContainer.setLayout(new GridLayout(6, 1, 10, 10));
         numContainer.setBounds(400, 120, 40, 200);
+        Container checkBoxContainer = new Container();
+        checkBoxContainer.setLayout(new GridLayout(6, 1, 10, 10));
+        checkBoxContainer.setBounds(440, 120, 80, 200);
         chooseOutputsLabel.setFont(font);
         chooseOutputsLabel.setForeground(Color.orange);
         chooseOutputsLabel.setBounds(245, 5, 300, 50);
@@ -94,7 +103,6 @@ public class Others extends JFrame implements ItemListener {
         dJLabel.setForeground(Color.orange);
         dJLabel.setOpaque(true);
         dJLabel.setBackground(Color.BLUE);
-
         roomLabel.setForeground(Color.orange);
         roomLabel.setOpaque(true);
         roomLabel.setBackground(Color.BLUE);
@@ -121,26 +129,46 @@ public class Others extends JFrame implements ItemListener {
         roomNumber.addItem("9");
         roomNumber.addItem("10");
         roomNumber.addItemListener(this);
-        if (SystemLogic.otherStrips.contains("Room")){
+        if (SystemLogic.omniStrips.contains("Room")||SystemLogic.extraStrips.contains("Room")){
             roomNumber.setSelectedItem("1");
-        }else if (!SystemLogic.otherStrips.contains("Roo3") && SystemLogic.otherStrips.contains("Roo2")){
+        }else if ((!SystemLogic.omniStrips.contains("Roo3") && SystemLogic.omniStrips.contains("Roo2"))||
+                (!SystemLogic.extraStrips.contains("Roo3") && SystemLogic.extraStrips.contains("Roo2"))){
             roomNumber.setSelectedItem("2");
-        }else if (!SystemLogic.otherStrips.contains("Roo4") && SystemLogic.otherStrips.contains("Roo3")){
+        }else if ((!SystemLogic.omniStrips.contains("Roo4") && SystemLogic.omniStrips.contains("Roo3"))||
+                (!SystemLogic.extraStrips.contains("Roo4") && SystemLogic.extraStrips.contains("Roo3"))){
             roomNumber.setSelectedItem("3");
-        }else if (!SystemLogic.otherStrips.contains("Roo5") && SystemLogic.otherStrips.contains("Roo4")){
+        } else if ((!SystemLogic.omniStrips.contains("Roo5") && SystemLogic.omniStrips.contains("Roo4"))||
+                (!SystemLogic.extraStrips.contains("Roo5") && SystemLogic.extraStrips.contains("Roo4"))){
             roomNumber.setSelectedItem("4");
-        }else if (!SystemLogic.otherStrips.contains("Roo6") && SystemLogic.otherStrips.contains("Roo5")){
+        }else if ((!SystemLogic.omniStrips.contains("Roo6") && SystemLogic.omniStrips.contains("Roo5"))||
+                (!SystemLogic.extraStrips.contains("Roo6") && SystemLogic.extraStrips.contains("Roo5"))){
             roomNumber.setSelectedItem("5");
-        }else if (!SystemLogic.otherStrips.contains("Roo7") && SystemLogic.otherStrips.contains("Roo6")){
+        }else if ((!SystemLogic.omniStrips.contains("Roo7") && SystemLogic.omniStrips.contains("Roo6"))||
+                (!SystemLogic.extraStrips.contains("Roo7") && SystemLogic.extraStrips.contains("Roo6"))){
             roomNumber.setSelectedItem("6");
-        }else if (!SystemLogic.otherStrips.contains("Roo8") && SystemLogic.otherStrips.contains("Roo7")){
+        }else if ((!SystemLogic.omniStrips.contains("Roo8") && SystemLogic.omniStrips.contains("Roo7"))||
+                (!SystemLogic.extraStrips.contains("Roo8") && SystemLogic.extraStrips.contains("Roo7"))){
             roomNumber.setSelectedItem("7");
-        }else if (!SystemLogic.otherStrips.contains("Roo9") && SystemLogic.otherStrips.contains("Roo8")){
+        }else if ((!SystemLogic.omniStrips.contains("Roo9") && SystemLogic.omniStrips.contains("Roo8"))||
+                (!SystemLogic.extraStrips.contains("Roo9") && SystemLogic.extraStrips.contains("Roo8"))){
             roomNumber.setSelectedItem("8");
-        }else if (!SystemLogic.otherStrips.contains("Roo10") && SystemLogic.otherStrips.contains("Roo9")){
+        }else if ((!SystemLogic.omniStrips.contains("Roo10") && SystemLogic.omniStrips.contains("Roo9"))||
+                (!SystemLogic.extraStrips.contains("Roo10") && SystemLogic.extraStrips.contains("Roo9"))){
             roomNumber.setSelectedItem("9");
-        }else if (SystemLogic.otherStrips.contains("Roo10")){
+        }else if (SystemLogic.omniStrips.contains("Roo10")||SystemLogic.extraStrips.contains("Roo10")){
             roomNumber.setSelectedItem("10");
+        }
+        if (SystemLogic.extraStrips.contains("Room") ||
+                SystemLogic.extraStrips.contains("Roo2") ||
+                SystemLogic.extraStrips.contains("Roo3") ||
+                SystemLogic.extraStrips.contains("Roo4") ||
+                SystemLogic.extraStrips.contains("Roo5") ||
+                SystemLogic.extraStrips.contains("Roo6") ||
+                SystemLogic.extraStrips.contains("Roo7") ||
+                SystemLogic.extraStrips.contains("Roo8") ||
+                SystemLogic.extraStrips.contains("Roo9") ||
+                SystemLogic.extraStrips.contains("Roo10")){
+            roomOnStage.setSelected(true);
         }
         dJNumber.addItem("0");
         dJNumber.addItem("1");
@@ -150,18 +178,30 @@ public class Others extends JFrame implements ItemListener {
         dJNumber.addItem("5");
         dJNumber.addItem("6");
         dJNumber.addItemListener(this);
-        if (SystemLogic.otherStrips.contains("DJ L")){
+        if (SystemLogic.omniStrips.contains("DJ L")||SystemLogic.extraStrips.contains("DJ L")){
             dJNumber.setSelectedItem("1");
-        }else if (!SystemLogic.otherStrips.contains("DJ3L") && SystemLogic.otherStrips.contains("DJ2L")){
+        }else if ((!SystemLogic.omniStrips.contains("DJ3L") && SystemLogic.omniStrips.contains("DJ2L"))||
+                (!SystemLogic.extraStrips.contains("DJ3L") && SystemLogic.extraStrips.contains("DJ2L"))){
             dJNumber.setSelectedItem("2");
-        }else if (!SystemLogic.otherStrips.contains("DJ4L") && SystemLogic.otherStrips.contains("DJ3L")){
+        }else if ((!SystemLogic.omniStrips.contains("DJ4L") && SystemLogic.omniStrips.contains("DJ3L"))||
+                (!SystemLogic.extraStrips.contains("DJ4L") && SystemLogic.extraStrips.contains("DJ3L"))){
             dJNumber.setSelectedItem("3");
-        }else if (!SystemLogic.otherStrips.contains("DJ5L") && SystemLogic.otherStrips.contains("DJ4L")){
+        }else if ((!SystemLogic.omniStrips.contains("DJ5L") && SystemLogic.omniStrips.contains("DJ4L"))||
+                (!SystemLogic.extraStrips.contains("DJ5L") && SystemLogic.extraStrips.contains("DJ4L"))){
             dJNumber.setSelectedItem("4");
-        }else if (!SystemLogic.otherStrips.contains("DJ6L") && SystemLogic.otherStrips.contains("DJ5L")){
+        }else if ((!SystemLogic.omniStrips.contains("DJ6L") && SystemLogic.omniStrips.contains("DJ5L"))||
+                (!SystemLogic.extraStrips.contains("DJ6L") && SystemLogic.extraStrips.contains("DJ5L"))){
             dJNumber.setSelectedItem("5");
-        }else if (SystemLogic.otherStrips.contains("DJ6L")){
+        }else if (SystemLogic.omniStrips.contains("DJ6L")||SystemLogic.extraStrips.contains("DJ6L")){
             dJNumber.setSelectedItem("6");
+        }
+        if (SystemLogic.extraStrips.contains("DJ L")||
+            SystemLogic.extraStrips.contains("DJ2L")||
+            SystemLogic.extraStrips.contains("DJ3L")||
+            SystemLogic.extraStrips.contains("DJ4L")||
+            SystemLogic.extraStrips.contains("DJ5L")||
+            SystemLogic.extraStrips.contains("DJ6L")){
+            djOnStage.setSelected(true);
         }
         screenNumber.addItem("0");
         screenNumber.addItem("1");
@@ -171,18 +211,30 @@ public class Others extends JFrame implements ItemListener {
         screenNumber.addItem("5");
         screenNumber.addItem("6");
         screenNumber.addItemListener(this);
-        if (SystemLogic.otherStrips.contains("ScrL")){
+        if (SystemLogic.omniStrips.contains("ScrL")||SystemLogic.extraStrips.contains("ScrL")){
             screenNumber.setSelectedItem("1");
-        }else if (!SystemLogic.otherStrips.contains("Sc3L") && SystemLogic.otherStrips.contains("Sc2L")){
+        }else if ((!SystemLogic.omniStrips.contains("Sc3L") && SystemLogic.omniStrips.contains("Sc2L"))||
+                (!SystemLogic.extraStrips.contains("Sc3L") && SystemLogic.extraStrips.contains("Sc2L"))){
             screenNumber.setSelectedItem("2");
-        }else if (!SystemLogic.otherStrips.contains("Sc4L") && SystemLogic.otherStrips.contains("Sc3L")){
+        }else if ((!SystemLogic.omniStrips.contains("Sc4L") && SystemLogic.omniStrips.contains("Sc3L"))||
+                (!SystemLogic.extraStrips.contains("Sc4L") && SystemLogic.extraStrips.contains("Sc3L"))){
             screenNumber.setSelectedItem("3");
-        }else if (!SystemLogic.otherStrips.contains("Sc5L") && SystemLogic.otherStrips.contains("Sc4L")){
+        }else if ((!SystemLogic.omniStrips.contains("Sc5L") && SystemLogic.omniStrips.contains("Sc4L"))||
+                (!SystemLogic.extraStrips.contains("Sc5L") && SystemLogic.extraStrips.contains("Sc4L"))){
             screenNumber.setSelectedItem("4");
-        }else if (!SystemLogic.otherStrips.contains("Sc6L") && SystemLogic.otherStrips.contains("Sc5L")){
+        }else if ((!SystemLogic.omniStrips.contains("Sc6L") && SystemLogic.omniStrips.contains("Sc5L"))||
+                (!SystemLogic.extraStrips.contains("Sc6L") && SystemLogic.extraStrips.contains("Sc5L"))){
             screenNumber.setSelectedItem("5");
-        }else if (SystemLogic.otherStrips.contains("Sc6L")){
+        }else if (SystemLogic.omniStrips.contains("Sc6L")||SystemLogic.extraStrips.contains("Sc6L")){
             screenNumber.setSelectedItem("6");
+        }
+        if (SystemLogic.extraStrips.contains("ScrL")||
+                SystemLogic.extraStrips.contains("Sc2L")||
+                SystemLogic.extraStrips.contains("Sc3L")||
+                SystemLogic.extraStrips.contains("Sc4L")||
+                SystemLogic.extraStrips.contains("Sc5L")||
+                SystemLogic.extraStrips.contains("Sc6L")){
+            screenOnStage.setSelected(true);
         }
         extraNumber.addItem("0");
         extraNumber.addItem("1");
@@ -196,37 +248,71 @@ public class Others extends JFrame implements ItemListener {
         extraNumber.addItem("9");
         extraNumber.addItem("10");
         extraNumber.addItemListener(this);
-        if (SystemLogic.otherStrips.contains("Extr")){
+        if (SystemLogic.omniStrips.contains("Extr")||SystemLogic.extraStrips.contains("Extr")){
             extraNumber.setSelectedItem("1");
-        }else if (!SystemLogic.otherStrips.contains("Ext3") && SystemLogic.otherStrips.contains("Ext2")){
+        }else if ((!SystemLogic.omniStrips.contains("Ext3") && SystemLogic.omniStrips.contains("Ext2"))||
+                (!SystemLogic.extraStrips.contains("Ext3") && SystemLogic.extraStrips.contains("Ext2"))){
             extraNumber.setSelectedItem("2");
-        }else if (!SystemLogic.otherStrips.contains("Ext4") && SystemLogic.otherStrips.contains("Ext3")){
+        }else if ((!SystemLogic.omniStrips.contains("Ext4") && SystemLogic.omniStrips.contains("Ext3"))||
+                (!SystemLogic.extraStrips.contains("Ext4") && SystemLogic.extraStrips.contains("Ext3"))){
             extraNumber.setSelectedItem("3");
-        }else if (!SystemLogic.otherStrips.contains("Ext5") && SystemLogic.otherStrips.contains("Ext4")){
+        }else if ((!SystemLogic.omniStrips.contains("Ext5") && SystemLogic.omniStrips.contains("Ext4"))||
+                (!SystemLogic.extraStrips.contains("Ext5") && SystemLogic.extraStrips.contains("Ext4"))){
             extraNumber.setSelectedItem("4");
-        }else if (!SystemLogic.otherStrips.contains("Ext6") && SystemLogic.otherStrips.contains("Ext5")){
+        }else if ((!SystemLogic.omniStrips.contains("Ext6") && SystemLogic.omniStrips.contains("Ext5"))||
+                (!SystemLogic.extraStrips.contains("Ext6") && SystemLogic.extraStrips.contains("Ext5"))){
             extraNumber.setSelectedItem("5");
-        }else if (!SystemLogic.otherStrips.contains("Ext7") && SystemLogic.otherStrips.contains("Ext6")){
+        }else if ((!SystemLogic.omniStrips.contains("Ext7") && SystemLogic.omniStrips.contains("Ext6"))||
+                (!SystemLogic.extraStrips.contains("Ext7") && SystemLogic.extraStrips.contains("Ext6"))){
             extraNumber.setSelectedItem("6");
-        }else if (!SystemLogic.otherStrips.contains("Ext8") && SystemLogic.otherStrips.contains("Ext7")){
+        }else if ((!SystemLogic.omniStrips.contains("Ext8") && SystemLogic.omniStrips.contains("Ext7"))||
+                (!SystemLogic.extraStrips.contains("Ext8") && SystemLogic.extraStrips.contains("Ext7"))){
             extraNumber.setSelectedItem("7");
-        }else if (!SystemLogic.otherStrips.contains("Ext9") && SystemLogic.otherStrips.contains("Ext8")){
+        }else if ((!SystemLogic.omniStrips.contains("Ext9") && SystemLogic.omniStrips.contains("Ext8"))||
+                (!SystemLogic.extraStrips.contains("Ext9") && SystemLogic.extraStrips.contains("Ext8"))){
             extraNumber.setSelectedItem("8");
-        }else if (!SystemLogic.otherStrips.contains("Ext10") && SystemLogic.otherStrips.contains("Ext9")){
+        }else if ((!SystemLogic.omniStrips.contains("Ext10") && SystemLogic.omniStrips.contains("Ext9"))||
+                (!SystemLogic.extraStrips.contains("Ext10") && SystemLogic.extraStrips.contains("Ext9"))){
             extraNumber.setSelectedItem("9");
-        }else if (SystemLogic.otherStrips.contains("Ext10")){
+        }else if (SystemLogic.omniStrips.contains("Ext10")||SystemLogic.extraStrips.contains("Ext10")){
             roomNumber.setSelectedItem("10");
+        }
+        if (SystemLogic.extraStrips.contains("Extr")||
+        SystemLogic.extraStrips.contains("Ext2")||
+        SystemLogic.extraStrips.contains("Ext3")||
+        SystemLogic.extraStrips.contains("Ext4")||
+        SystemLogic.extraStrips.contains("Ext5")||
+        SystemLogic.extraStrips.contains("Ext6")||
+        SystemLogic.extraStrips.contains("Ext7")||
+        SystemLogic.extraStrips.contains("Ext8")||
+        SystemLogic.extraStrips.contains("Ext9")||
+        SystemLogic.extraStrips.contains("Ext10")){
+            extraOnStage.setSelected(true);
         }
         numContainer.add(dJNumber);
         numContainer.add(screenNumber);
         numContainer.add(extraNumber);
         numContainer.add(roomNumber);
 
+        djOnStage.setBackground(Color.BLUE);
+        djOnStage.setForeground(Color.orange);
+        screenOnStage.setBackground(Color.BLUE);
+        screenOnStage.setForeground(Color.orange);
+        extraOnStage.setBackground(Color.BLUE);
+        extraOnStage.setForeground(Color.orange);
+        roomOnStage.setBackground(Color.BLUE);
+        roomOnStage.setForeground(Color.orange);
+        checkBoxContainer.add(djOnStage);
+        checkBoxContainer.add(screenOnStage);
+        checkBoxContainer.add(extraOnStage);
+        checkBoxContainer.add(roomOnStage);
+
         otherCannels.setBounds(650, 20, 150, 25);//label
         otherCannels.setForeground(Color.green);
         container.add(otherCannels);
         container.add(labelContainer);
         container.add(numContainer);
+        container.add(checkBoxContainer);
 
 //elements end
 
@@ -238,281 +324,573 @@ public class Others extends JFrame implements ItemListener {
         buttonApply.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SystemLogic.otherStrips.clear();
+                SystemLogic.omniStrips.clear();
+                SystemLogic.extraStrips.clear();
 
                 String djSel = dJNumber.getSelectedItem().toString();
                 switch (djSel) {
                     case "1":
-                        SystemLogic.otherStrips.add("DJ L");
-                        SystemLogic.otherStrips.add("DJ R");
+                        if (djOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("DJ L");
+                            SystemLogic.extraStrips.add("DJ R");
+                        }else {
+                            SystemLogic.omniStrips.add("DJ L");
+                            SystemLogic.omniStrips.add("DJ R");
+                        }
                         break;
                     case "2":
-                        SystemLogic.otherStrips.add("DJ1L");
-                        SystemLogic.otherStrips.add("DJ1R");
-                        SystemLogic.otherStrips.add("DJ2L");
-                        SystemLogic.otherStrips.add("DJ2R");
+                        if (djOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("DJ1L");
+                            SystemLogic.extraStrips.add("DJ1R");
+                            SystemLogic.extraStrips.add("DJ2L");
+                            SystemLogic.extraStrips.add("DJ2R");
+                        }else {
+                            SystemLogic.omniStrips.add("DJ1L");
+                            SystemLogic.omniStrips.add("DJ1R");
+                            SystemLogic.omniStrips.add("DJ2L");
+                            SystemLogic.omniStrips.add("DJ2R");
+                        }
                         break;
                     case "3":
-                        SystemLogic.otherStrips.add("DJ1L");
-                        SystemLogic.otherStrips.add("DJ1R");
-                        SystemLogic.otherStrips.add("DJ2L");
-                        SystemLogic.otherStrips.add("DJ2R");
-                        SystemLogic.otherStrips.add("DJ3L");
-                        SystemLogic.otherStrips.add("DJ3R");
+                        if (djOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("DJ1L");
+                            SystemLogic.extraStrips.add("DJ1R");
+                            SystemLogic.extraStrips.add("DJ2L");
+                            SystemLogic.extraStrips.add("DJ2R");
+                            SystemLogic.extraStrips.add("DJ3L");
+                            SystemLogic.extraStrips.add("DJ3R");
+                        }else {
+                            SystemLogic.omniStrips.add("DJ1L");
+                            SystemLogic.omniStrips.add("DJ1R");
+                            SystemLogic.omniStrips.add("DJ2L");
+                            SystemLogic.omniStrips.add("DJ2R");
+                            SystemLogic.omniStrips.add("DJ3L");
+                            SystemLogic.omniStrips.add("DJ3R");
+                        }
                         break;
                     case "4":
-                        SystemLogic.otherStrips.add("DJ1L");
-                        SystemLogic.otherStrips.add("DJ1R");
-                        SystemLogic.otherStrips.add("DJ2L");
-                        SystemLogic.otherStrips.add("DJ2R");
-                        SystemLogic.otherStrips.add("DJ3L");
-                        SystemLogic.otherStrips.add("DJ3R");
-                        SystemLogic.otherStrips.add("DJ4L");
-                        SystemLogic.otherStrips.add("DJ4R");
+                        if (djOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("DJ1L");
+                            SystemLogic.extraStrips.add("DJ1R");
+                            SystemLogic.extraStrips.add("DJ2L");
+                            SystemLogic.extraStrips.add("DJ2R");
+                            SystemLogic.extraStrips.add("DJ3L");
+                            SystemLogic.extraStrips.add("DJ3R");
+                            SystemLogic.extraStrips.add("DJ4L");
+                            SystemLogic.extraStrips.add("DJ4R");
+                        }else {
+                            SystemLogic.omniStrips.add("DJ1L");
+                            SystemLogic.omniStrips.add("DJ1R");
+                            SystemLogic.omniStrips.add("DJ2L");
+                            SystemLogic.omniStrips.add("DJ2R");
+                            SystemLogic.omniStrips.add("DJ3L");
+                            SystemLogic.omniStrips.add("DJ3R");
+                            SystemLogic.omniStrips.add("DJ4L");
+                            SystemLogic.omniStrips.add("DJ4R");
+                        }
                         break;
                     case "5":
-                        SystemLogic.otherStrips.add("DJ1L");
-                        SystemLogic.otherStrips.add("DJ1R");
-                        SystemLogic.otherStrips.add("DJ2L");
-                        SystemLogic.otherStrips.add("DJ2R");
-                        SystemLogic.otherStrips.add("DJ3L");
-                        SystemLogic.otherStrips.add("DJ3R");
-                        SystemLogic.otherStrips.add("DJ4L");
-                        SystemLogic.otherStrips.add("DJ4R");
-                        SystemLogic.otherStrips.add("DJ5L");
-                        SystemLogic.otherStrips.add("DJ5R");
+                        if (djOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("DJ1L");
+                            SystemLogic.extraStrips.add("DJ1R");
+                            SystemLogic.extraStrips.add("DJ2L");
+                            SystemLogic.extraStrips.add("DJ2R");
+                            SystemLogic.extraStrips.add("DJ3L");
+                            SystemLogic.extraStrips.add("DJ3R");
+                            SystemLogic.extraStrips.add("DJ4L");
+                            SystemLogic.extraStrips.add("DJ4R");
+                            SystemLogic.extraStrips.add("DJ5L");
+                            SystemLogic.extraStrips.add("DJ5R");
+                        }else {
+                            SystemLogic.omniStrips.add("DJ1L");
+                            SystemLogic.omniStrips.add("DJ1R");
+                            SystemLogic.omniStrips.add("DJ2L");
+                            SystemLogic.omniStrips.add("DJ2R");
+                            SystemLogic.omniStrips.add("DJ3L");
+                            SystemLogic.omniStrips.add("DJ3R");
+                            SystemLogic.omniStrips.add("DJ4L");
+                            SystemLogic.omniStrips.add("DJ4R");
+                            SystemLogic.omniStrips.add("DJ5L");
+                            SystemLogic.omniStrips.add("DJ5R");
+                        }
                         break;
                     case "6":
-                        SystemLogic.otherStrips.add("DJ1L");
-                        SystemLogic.otherStrips.add("DJ1R");
-                        SystemLogic.otherStrips.add("DJ2L");
-                        SystemLogic.otherStrips.add("DJ2R");
-                        SystemLogic.otherStrips.add("DJ3L");
-                        SystemLogic.otherStrips.add("DJ3R");
-                        SystemLogic.otherStrips.add("DJ4L");
-                        SystemLogic.otherStrips.add("DJ4R");
-                        SystemLogic.otherStrips.add("DJ5L");
-                        SystemLogic.otherStrips.add("DJ5R");
-                        SystemLogic.otherStrips.add("DJ6L");
-                        SystemLogic.otherStrips.add("DJ6R");
+                        if (djOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("DJ1L");
+                            SystemLogic.extraStrips.add("DJ1R");
+                            SystemLogic.extraStrips.add("DJ2L");
+                            SystemLogic.extraStrips.add("DJ2R");
+                            SystemLogic.extraStrips.add("DJ3L");
+                            SystemLogic.extraStrips.add("DJ3R");
+                            SystemLogic.extraStrips.add("DJ4L");
+                            SystemLogic.extraStrips.add("DJ4R");
+                            SystemLogic.extraStrips.add("DJ5L");
+                            SystemLogic.extraStrips.add("DJ5R");
+                            SystemLogic.extraStrips.add("DJ6L");
+                            SystemLogic.extraStrips.add("DJ6R");
+                        }else {
+                            SystemLogic.omniStrips.add("DJ1L");
+                            SystemLogic.omniStrips.add("DJ1R");
+                            SystemLogic.omniStrips.add("DJ2L");
+                            SystemLogic.omniStrips.add("DJ2R");
+                            SystemLogic.omniStrips.add("DJ3L");
+                            SystemLogic.omniStrips.add("DJ3R");
+                            SystemLogic.omniStrips.add("DJ4L");
+                            SystemLogic.omniStrips.add("DJ4R");
+                            SystemLogic.omniStrips.add("DJ5L");
+                            SystemLogic.omniStrips.add("DJ5R");
+                            SystemLogic.omniStrips.add("DJ6L");
+                            SystemLogic.omniStrips.add("DJ6R");
+                        }
                         break;
 
                 }
-                String scrSel = dJNumber.getSelectedItem().toString();
+                String scrSel = screenNumber.getSelectedItem().toString();
                 switch (scrSel) {
                     case "1":
-                        SystemLogic.otherStrips.add("ScrL");
-                        SystemLogic.otherStrips.add("ScrR");
+                        if (screenOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("ScrL");
+                            SystemLogic.extraStrips.add("ScrR");
+                        }else {
+                            SystemLogic.omniStrips.add("ScrL");
+                            SystemLogic.omniStrips.add("ScrR");
+                        }
                         break;
                     case "2":
-                        SystemLogic.otherStrips.add("Sc1L");
-                        SystemLogic.otherStrips.add("Sc1R");
-                        SystemLogic.otherStrips.add("Sc2L");
-                        SystemLogic.otherStrips.add("Sc2R");
+                        if (screenOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Sc1L");
+                            SystemLogic.extraStrips.add("Sc1R");
+                            SystemLogic.extraStrips.add("Sc2L");
+                            SystemLogic.extraStrips.add("Sc2R");
+                        }else {
+                            SystemLogic.omniStrips.add("Sc1L");
+                            SystemLogic.omniStrips.add("Sc1R");
+                            SystemLogic.omniStrips.add("Sc2L");
+                            SystemLogic.omniStrips.add("Sc2R");
+                        }
                         break;
                     case "3":
-                        SystemLogic.otherStrips.add("Sc1L");
-                        SystemLogic.otherStrips.add("Sc1R");
-                        SystemLogic.otherStrips.add("Sc2L");
-                        SystemLogic.otherStrips.add("Sc2R");
-                        SystemLogic.otherStrips.add("Sc3L");
-                        SystemLogic.otherStrips.add("Sc3R");
+                        if (screenOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Sc1L");
+                            SystemLogic.extraStrips.add("Sc1R");
+                            SystemLogic.extraStrips.add("Sc2L");
+                            SystemLogic.extraStrips.add("Sc2R");
+                            SystemLogic.extraStrips.add("Sc3L");
+                            SystemLogic.extraStrips.add("Sc3R");
+                        }else {
+                            SystemLogic.omniStrips.add("Sc1L");
+                            SystemLogic.omniStrips.add("Sc1R");
+                            SystemLogic.omniStrips.add("Sc2L");
+                            SystemLogic.omniStrips.add("Sc2R");
+                            SystemLogic.omniStrips.add("Sc3L");
+                            SystemLogic.omniStrips.add("Sc3R");
+                        }
                         break;
                     case "4":
-                        SystemLogic.otherStrips.add("Sc1L");
-                        SystemLogic.otherStrips.add("Sc1R");
-                        SystemLogic.otherStrips.add("Sc2L");
-                        SystemLogic.otherStrips.add("Sc2R");
-                        SystemLogic.otherStrips.add("Sc3L");
-                        SystemLogic.otherStrips.add("Sc3R");
-                        SystemLogic.otherStrips.add("Sc4L");
-                        SystemLogic.otherStrips.add("Sc4R");
+                        if (screenOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Sc1L");
+                            SystemLogic.extraStrips.add("Sc1R");
+                            SystemLogic.extraStrips.add("Sc2L");
+                            SystemLogic.extraStrips.add("Sc2R");
+                            SystemLogic.extraStrips.add("Sc3L");
+                            SystemLogic.extraStrips.add("Sc3R");
+                            SystemLogic.extraStrips.add("Sc4L");
+                            SystemLogic.extraStrips.add("Sc4R");
+                        }else{
+                            SystemLogic.omniStrips.add("Sc1L");
+                            SystemLogic.omniStrips.add("Sc1R");
+                            SystemLogic.omniStrips.add("Sc2L");
+                            SystemLogic.omniStrips.add("Sc2R");
+                            SystemLogic.omniStrips.add("Sc3L");
+                            SystemLogic.omniStrips.add("Sc3R");
+                            SystemLogic.omniStrips.add("Sc4L");
+                            SystemLogic.omniStrips.add("Sc4R");
+                        }
                         break;
                     case "5":
-                        SystemLogic.otherStrips.add("Sc1L");
-                        SystemLogic.otherStrips.add("Sc1R");
-                        SystemLogic.otherStrips.add("Sc2L");
-                        SystemLogic.otherStrips.add("Sc2R");
-                        SystemLogic.otherStrips.add("Sc3L");
-                        SystemLogic.otherStrips.add("Sc3R");
-                        SystemLogic.otherStrips.add("Sc4L");
-                        SystemLogic.otherStrips.add("Sc4R");
-                        SystemLogic.otherStrips.add("Sc5L");
-                        SystemLogic.otherStrips.add("Sc5R");
+                        if (screenOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Sc1L");
+                            SystemLogic.extraStrips.add("Sc1R");
+                            SystemLogic.extraStrips.add("Sc2L");
+                            SystemLogic.extraStrips.add("Sc2R");
+                            SystemLogic.extraStrips.add("Sc3L");
+                            SystemLogic.extraStrips.add("Sc3R");
+                            SystemLogic.extraStrips.add("Sc4L");
+                            SystemLogic.extraStrips.add("Sc4R");
+                            SystemLogic.extraStrips.add("Sc5L");
+                            SystemLogic.extraStrips.add("Sc5R");
+                        }else{
+                            SystemLogic.omniStrips.add("Sc1L");
+                            SystemLogic.omniStrips.add("Sc1R");
+                            SystemLogic.omniStrips.add("Sc2L");
+                            SystemLogic.omniStrips.add("Sc2R");
+                            SystemLogic.omniStrips.add("Sc3L");
+                            SystemLogic.omniStrips.add("Sc3R");
+                            SystemLogic.omniStrips.add("Sc4L");
+                            SystemLogic.omniStrips.add("Sc4R");
+                            SystemLogic.omniStrips.add("Sc5L");
+                            SystemLogic.omniStrips.add("Sc5R");
+                        }
                         break;
                     case "6":
-                        SystemLogic.otherStrips.add("Sc1L");
-                        SystemLogic.otherStrips.add("Sc1R");
-                        SystemLogic.otherStrips.add("Sc2L");
-                        SystemLogic.otherStrips.add("Sc2R");
-                        SystemLogic.otherStrips.add("Sc3L");
-                        SystemLogic.otherStrips.add("Sc3R");
-                        SystemLogic.otherStrips.add("Sc4L");
-                        SystemLogic.otherStrips.add("Sc4R");
-                        SystemLogic.otherStrips.add("Sc5L");
-                        SystemLogic.otherStrips.add("Sc5R");
-                        SystemLogic.otherStrips.add("Sc6L");
-                        SystemLogic.otherStrips.add("Sc6R");
+                        if (screenOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Sc1L");
+                            SystemLogic.extraStrips.add("Sc1R");
+                            SystemLogic.extraStrips.add("Sc2L");
+                            SystemLogic.extraStrips.add("Sc2R");
+                            SystemLogic.extraStrips.add("Sc3L");
+                            SystemLogic.extraStrips.add("Sc3R");
+                            SystemLogic.extraStrips.add("Sc4L");
+                            SystemLogic.extraStrips.add("Sc4R");
+                            SystemLogic.extraStrips.add("Sc5L");
+                            SystemLogic.extraStrips.add("Sc5R");
+                            SystemLogic.extraStrips.add("Sc6L");
+                            SystemLogic.extraStrips.add("Sc6R");
+                        }else {
+                            SystemLogic.omniStrips.add("Sc1L");
+                            SystemLogic.omniStrips.add("Sc1R");
+                            SystemLogic.omniStrips.add("Sc2L");
+                            SystemLogic.omniStrips.add("Sc2R");
+                            SystemLogic.omniStrips.add("Sc3L");
+                            SystemLogic.omniStrips.add("Sc3R");
+                            SystemLogic.omniStrips.add("Sc4L");
+                            SystemLogic.omniStrips.add("Sc4R");
+                            SystemLogic.omniStrips.add("Sc5L");
+                            SystemLogic.omniStrips.add("Sc5R");
+                            SystemLogic.omniStrips.add("Sc6L");
+                            SystemLogic.omniStrips.add("Sc6R");
+                        }
                         break;
                 }
                 String extSel = extraNumber.getSelectedItem().toString();
                 switch (extSel) {
                     case "1":
-                        SystemLogic.otherStrips.add("Extr");
+                        if (extraOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Extr");
+                        }else {
+                            SystemLogic.omniStrips.add("Extr");
+                        }
                         break;
                     case "2":
-                        SystemLogic.otherStrips.add("Ext1");
-                        SystemLogic.otherStrips.add("Ext2");
+                        if (extraOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Ext1");
+                            SystemLogic.extraStrips.add("Ext2");
+                        }else {
+                            SystemLogic.omniStrips.add("Ext1");
+                            SystemLogic.omniStrips.add("Ext2");
+                        }
                         break;
                     case "3":
-                        SystemLogic.otherStrips.add("Ext1");
-                        SystemLogic.otherStrips.add("Ext2");
-                        SystemLogic.otherStrips.add("Ext3");
+                        if (extraOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Ext1");
+                            SystemLogic.extraStrips.add("Ext2");
+                            SystemLogic.extraStrips.add("Ext3");
+                        }else {
+                            SystemLogic.omniStrips.add("Ext1");
+                            SystemLogic.omniStrips.add("Ext2");
+                            SystemLogic.omniStrips.add("Ext3");
+                        }
                         break;
                     case "4":
-                        SystemLogic.otherStrips.add("Ext1");
-                        SystemLogic.otherStrips.add("Ext2");
-                        SystemLogic.otherStrips.add("Ext3");
-                        SystemLogic.otherStrips.add("Ext4");
+                        if (extraOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Ext1");
+                            SystemLogic.extraStrips.add("Ext2");
+                            SystemLogic.extraStrips.add("Ext3");
+                            SystemLogic.extraStrips.add("Ext4");
+                        }else {
+                            SystemLogic.omniStrips.add("Ext1");
+                            SystemLogic.omniStrips.add("Ext2");
+                            SystemLogic.omniStrips.add("Ext3");
+                            SystemLogic.omniStrips.add("Ext4");
+                        }
                         break;
                     case "5":
-                        SystemLogic.otherStrips.add("Ext1");
-                        SystemLogic.otherStrips.add("Ext2");
-                        SystemLogic.otherStrips.add("Ext3");
-                        SystemLogic.otherStrips.add("Ext4");
-                        SystemLogic.otherStrips.add("Ext5");
+                        if (extraOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Ext1");
+                            SystemLogic.extraStrips.add("Ext2");
+                            SystemLogic.extraStrips.add("Ext3");
+                            SystemLogic.extraStrips.add("Ext4");
+                            SystemLogic.extraStrips.add("Ext5");
+                        }else {
+                            SystemLogic.omniStrips.add("Ext1");
+                            SystemLogic.omniStrips.add("Ext2");
+                            SystemLogic.omniStrips.add("Ext3");
+                            SystemLogic.omniStrips.add("Ext4");
+                            SystemLogic.omniStrips.add("Ext5");
+                        }
                         break;
                     case "6":
-                        SystemLogic.otherStrips.add("Ext1");
-                        SystemLogic.otherStrips.add("Ext2");
-                        SystemLogic.otherStrips.add("Ext3");
-                        SystemLogic.otherStrips.add("Ext4");
-                        SystemLogic.otherStrips.add("Ext5");
-                        SystemLogic.otherStrips.add("Ext6");
+                        if (extraOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Ext1");
+                            SystemLogic.extraStrips.add("Ext2");
+                            SystemLogic.extraStrips.add("Ext3");
+                            SystemLogic.extraStrips.add("Ext4");
+                            SystemLogic.extraStrips.add("Ext5");
+                            SystemLogic.extraStrips.add("Ext6");
+                        }else {
+                            SystemLogic.omniStrips.add("Ext1");
+                            SystemLogic.omniStrips.add("Ext2");
+                            SystemLogic.omniStrips.add("Ext3");
+                            SystemLogic.omniStrips.add("Ext4");
+                            SystemLogic.omniStrips.add("Ext5");
+                            SystemLogic.omniStrips.add("Ext6");
+                        }
                         break;
                     case "7":
-                        SystemLogic.otherStrips.add("Ext1");
-                        SystemLogic.otherStrips.add("Ext2");
-                        SystemLogic.otherStrips.add("Ext3");
-                        SystemLogic.otherStrips.add("Ext4");
-                        SystemLogic.otherStrips.add("Ext5");
-                        SystemLogic.otherStrips.add("Ext6");
-                        SystemLogic.otherStrips.add("Ext7");
+                        if (extraOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Ext1");
+                            SystemLogic.extraStrips.add("Ext2");
+                            SystemLogic.extraStrips.add("Ext3");
+                            SystemLogic.extraStrips.add("Ext4");
+                            SystemLogic.extraStrips.add("Ext5");
+                            SystemLogic.extraStrips.add("Ext6");
+                            SystemLogic.extraStrips.add("Ext7");
+                        }else {
+                            SystemLogic.omniStrips.add("Ext1");
+                            SystemLogic.omniStrips.add("Ext2");
+                            SystemLogic.omniStrips.add("Ext3");
+                            SystemLogic.omniStrips.add("Ext4");
+                            SystemLogic.omniStrips.add("Ext5");
+                            SystemLogic.omniStrips.add("Ext6");
+                            SystemLogic.omniStrips.add("Ext7");
+                        }
                         break;
                     case "8":
-                        SystemLogic.otherStrips.add("Ext1");
-                        SystemLogic.otherStrips.add("Ext2");
-                        SystemLogic.otherStrips.add("Ext3");
-                        SystemLogic.otherStrips.add("Ext4");
-                        SystemLogic.otherStrips.add("Ext5");
-                        SystemLogic.otherStrips.add("Ext6");
-                        SystemLogic.otherStrips.add("Ext7");
-                        SystemLogic.otherStrips.add("Ext8");
+                        if (extraOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Ext1");
+                            SystemLogic.extraStrips.add("Ext2");
+                            SystemLogic.extraStrips.add("Ext3");
+                            SystemLogic.extraStrips.add("Ext4");
+                            SystemLogic.extraStrips.add("Ext5");
+                            SystemLogic.extraStrips.add("Ext6");
+                            SystemLogic.extraStrips.add("Ext7");
+                            SystemLogic.extraStrips.add("Ext8");
+                        }else {
+                            SystemLogic.omniStrips.add("Ext1");
+                            SystemLogic.omniStrips.add("Ext2");
+                            SystemLogic.omniStrips.add("Ext3");
+                            SystemLogic.omniStrips.add("Ext4");
+                            SystemLogic.omniStrips.add("Ext5");
+                            SystemLogic.omniStrips.add("Ext6");
+                            SystemLogic.omniStrips.add("Ext7");
+                            SystemLogic.omniStrips.add("Ext8");
+                        }
                         break;
-                    case "9":
-                        SystemLogic.otherStrips.add("Ext1");
-                        SystemLogic.otherStrips.add("Ext2");
-                        SystemLogic.otherStrips.add("Ext3");
-                        SystemLogic.otherStrips.add("Ext4");
-                        SystemLogic.otherStrips.add("Ext5");
-                        SystemLogic.otherStrips.add("Ext6");
-                        SystemLogic.otherStrips.add("Ext7");
-                        SystemLogic.otherStrips.add("Ext8");
-                        SystemLogic.otherStrips.add("Ext9");
+
+                        case "9":
+                            if (extraOnStage.isSelected()){
+                                SystemLogic.extraStrips.add("Ext1");
+                                SystemLogic.extraStrips.add("Ext2");
+                                SystemLogic.extraStrips.add("Ext3");
+                                SystemLogic.extraStrips.add("Ext4");
+                                SystemLogic.extraStrips.add("Ext5");
+                                SystemLogic.extraStrips.add("Ext6");
+                                SystemLogic.extraStrips.add("Ext7");
+                                SystemLogic.extraStrips.add("Ext8");
+                                SystemLogic.extraStrips.add("Ext9");
+                            }else {
+                                SystemLogic.omniStrips.add("Ext1");
+                                SystemLogic.omniStrips.add("Ext2");
+                                SystemLogic.omniStrips.add("Ext3");
+                                SystemLogic.omniStrips.add("Ext4");
+                                SystemLogic.omniStrips.add("Ext5");
+                                SystemLogic.omniStrips.add("Ext6");
+                                SystemLogic.omniStrips.add("Ext7");
+                                SystemLogic.omniStrips.add("Ext8");
+                                SystemLogic.omniStrips.add("Ext9");
+                            }
                         break;
                     case "10":
-                        SystemLogic.otherStrips.add("Ext1");
-                        SystemLogic.otherStrips.add("Ext2");
-                        SystemLogic.otherStrips.add("Ext3");
-                        SystemLogic.otherStrips.add("Ext4");
-                        SystemLogic.otherStrips.add("Ext5");
-                        SystemLogic.otherStrips.add("Ext6");
-                        SystemLogic.otherStrips.add("Ext7");
-                        SystemLogic.otherStrips.add("Ext8");
-                        SystemLogic.otherStrips.add("Ext9");
-                        SystemLogic.otherStrips.add("Ext10");
+                        if (extraOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Ext1");
+                            SystemLogic.extraStrips.add("Ext2");
+                            SystemLogic.extraStrips.add("Ext3");
+                            SystemLogic.extraStrips.add("Ext4");
+                            SystemLogic.extraStrips.add("Ext5");
+                            SystemLogic.extraStrips.add("Ext6");
+                            SystemLogic.extraStrips.add("Ext7");
+                            SystemLogic.extraStrips.add("Ext8");
+                            SystemLogic.extraStrips.add("Ext9");
+                            SystemLogic.extraStrips.add("Ext10");
+                        }else {
+                            SystemLogic.omniStrips.add("Ext1");
+                            SystemLogic.omniStrips.add("Ext2");
+                            SystemLogic.omniStrips.add("Ext3");
+                            SystemLogic.omniStrips.add("Ext4");
+                            SystemLogic.omniStrips.add("Ext5");
+                            SystemLogic.omniStrips.add("Ext6");
+                            SystemLogic.omniStrips.add("Ext7");
+                            SystemLogic.omniStrips.add("Ext8");
+                            SystemLogic.omniStrips.add("Ext9");
+                            SystemLogic.omniStrips.add("Ext10");
+                        }
                         break;
                 }
                 String roomSel = roomNumber.getSelectedItem().toString();
                 switch (roomSel) {
                     case "1":
-                        SystemLogic.otherStrips.add("Room");
+                        if (roomOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Room");
+                        }else {
+                            SystemLogic.omniStrips.add("Room");
+                        }
                         break;
                     case "2":
-                        SystemLogic.otherStrips.add("Roo1");
-                        SystemLogic.otherStrips.add("Roo2");
+                        if (roomOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Roo1");
+                            SystemLogic.extraStrips.add("Roo2");
+                        }else {
+                            SystemLogic.omniStrips.add("Roo1");
+                            SystemLogic.omniStrips.add("Roo2");
+                        }
                         break;
                     case "3":
-                        SystemLogic.otherStrips.add("Roo1");
-                        SystemLogic.otherStrips.add("Roo2");
-                        SystemLogic.otherStrips.add("Roo3");
+                        if (roomOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Roo1");
+                            SystemLogic.extraStrips.add("Roo2");
+                            SystemLogic.extraStrips.add("Roo3");
+                        }else {
+                            SystemLogic.omniStrips.add("Roo1");
+                            SystemLogic.omniStrips.add("Roo2");
+                            SystemLogic.omniStrips.add("Roo3");
+                        }
                         break;
                     case "4":
-                        SystemLogic.otherStrips.add("Roo1");
-                        SystemLogic.otherStrips.add("Roo2");
-                        SystemLogic.otherStrips.add("Roo3");
-                        SystemLogic.otherStrips.add("Roo4");
+                        if (roomOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Roo1");
+                            SystemLogic.extraStrips.add("Roo2");
+                            SystemLogic.extraStrips.add("Roo3");
+                            SystemLogic.extraStrips.add("Roo4");
+                        }else {
+                            SystemLogic.omniStrips.add("Roo1");
+                            SystemLogic.omniStrips.add("Roo2");
+                            SystemLogic.omniStrips.add("Roo3");
+                            SystemLogic.omniStrips.add("Roo4");
+                        }
                         break;
                     case "5":
-                        SystemLogic.otherStrips.add("Roo1");
-                        SystemLogic.otherStrips.add("Roo2");
-                        SystemLogic.otherStrips.add("Roo3");
-                        SystemLogic.otherStrips.add("Roo4");
-                        SystemLogic.otherStrips.add("Roo5");
+                        if (roomOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Roo1");
+                            SystemLogic.extraStrips.add("Roo2");
+                            SystemLogic.extraStrips.add("Roo3");
+                            SystemLogic.extraStrips.add("Roo4");
+                            SystemLogic.extraStrips.add("Roo5");
+                        }else {
+                            SystemLogic.omniStrips.add("Roo1");
+                            SystemLogic.omniStrips.add("Roo2");
+                            SystemLogic.omniStrips.add("Roo3");
+                            SystemLogic.omniStrips.add("Roo4");
+                            SystemLogic.omniStrips.add("Roo5");
+                        }
                         break;
                     case "6":
-                        SystemLogic.otherStrips.add("Roo1");
-                        SystemLogic.otherStrips.add("Roo2");
-                        SystemLogic.otherStrips.add("Roo3");
-                        SystemLogic.otherStrips.add("Roo4");
-                        SystemLogic.otherStrips.add("Roo5");
-                        SystemLogic.otherStrips.add("Roo6");
+                        if (roomOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Roo1");
+                            SystemLogic.extraStrips.add("Roo2");
+                            SystemLogic.extraStrips.add("Roo3");
+                            SystemLogic.extraStrips.add("Roo4");
+                            SystemLogic.extraStrips.add("Roo5");
+                            SystemLogic.extraStrips.add("Roo6");
+                        }else {
+                            SystemLogic.omniStrips.add("Roo1");
+                            SystemLogic.omniStrips.add("Roo2");
+                            SystemLogic.omniStrips.add("Roo3");
+                            SystemLogic.omniStrips.add("Roo4");
+                            SystemLogic.omniStrips.add("Roo5");
+                            SystemLogic.omniStrips.add("Roo6");
+                        }
                         break;
                     case "7":
-                        SystemLogic.otherStrips.add("Roo1");
-                        SystemLogic.otherStrips.add("Roo2");
-                        SystemLogic.otherStrips.add("Roo3");
-                        SystemLogic.otherStrips.add("Roo4");
-                        SystemLogic.otherStrips.add("Roo5");
-                        SystemLogic.otherStrips.add("Roo6");
-                        SystemLogic.otherStrips.add("Roo7");
+                        if (roomOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Roo1");
+                            SystemLogic.extraStrips.add("Roo2");
+                            SystemLogic.extraStrips.add("Roo3");
+                            SystemLogic.extraStrips.add("Roo4");
+                            SystemLogic.extraStrips.add("Roo5");
+                            SystemLogic.extraStrips.add("Roo6");
+                            SystemLogic.extraStrips.add("Roo7");
+                        }else {
+                            SystemLogic.omniStrips.add("Roo1");
+                            SystemLogic.omniStrips.add("Roo2");
+                            SystemLogic.omniStrips.add("Roo3");
+                            SystemLogic.omniStrips.add("Roo4");
+                            SystemLogic.omniStrips.add("Roo5");
+                            SystemLogic.omniStrips.add("Roo6");
+                            SystemLogic.omniStrips.add("Roo7");
+                        }
                         break;
                     case "8":
-                        SystemLogic.otherStrips.add("Roo1");
-                        SystemLogic.otherStrips.add("Roo2");
-                        SystemLogic.otherStrips.add("Roo3");
-                        SystemLogic.otherStrips.add("Roo4");
-                        SystemLogic.otherStrips.add("Roo5");
-                        SystemLogic.otherStrips.add("Roo6");
-                        SystemLogic.otherStrips.add("Roo7");
-                        SystemLogic.otherStrips.add("Roo8");
+                        if (roomOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Roo1");
+                            SystemLogic.extraStrips.add("Roo2");
+                            SystemLogic.extraStrips.add("Roo3");
+                            SystemLogic.extraStrips.add("Roo4");
+                            SystemLogic.extraStrips.add("Roo5");
+                            SystemLogic.extraStrips.add("Roo6");
+                            SystemLogic.extraStrips.add("Roo7");
+                            SystemLogic.extraStrips.add("Roo8");
+                        }else {
+                            SystemLogic.omniStrips.add("Roo1");
+                            SystemLogic.omniStrips.add("Roo2");
+                            SystemLogic.omniStrips.add("Roo3");
+                            SystemLogic.omniStrips.add("Roo4");
+                            SystemLogic.omniStrips.add("Roo5");
+                            SystemLogic.omniStrips.add("Roo6");
+                            SystemLogic.omniStrips.add("Roo7");
+                            SystemLogic.omniStrips.add("Roo8");
+                        }
                         break;
                     case "9":
-                        SystemLogic.otherStrips.add("Roo1");
-                        SystemLogic.otherStrips.add("Roo2");
-                        SystemLogic.otherStrips.add("Roo3");
-                        SystemLogic.otherStrips.add("Roo4");
-                        SystemLogic.otherStrips.add("Roo5");
-                        SystemLogic.otherStrips.add("Roo6");
-                        SystemLogic.otherStrips.add("Roo7");
-                        SystemLogic.otherStrips.add("Roo8");
-                        SystemLogic.otherStrips.add("Roo9");
+                        if (roomOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Roo1");
+                            SystemLogic.extraStrips.add("Roo2");
+                            SystemLogic.extraStrips.add("Roo3");
+                            SystemLogic.extraStrips.add("Roo4");
+                            SystemLogic.extraStrips.add("Roo5");
+                            SystemLogic.extraStrips.add("Roo6");
+                            SystemLogic.extraStrips.add("Roo7");
+                            SystemLogic.extraStrips.add("Roo8");
+                            SystemLogic.extraStrips.add("Roo9");
+                        }else {
+                            SystemLogic.omniStrips.add("Roo1");
+                            SystemLogic.omniStrips.add("Roo2");
+                            SystemLogic.omniStrips.add("Roo3");
+                            SystemLogic.omniStrips.add("Roo4");
+                            SystemLogic.omniStrips.add("Roo5");
+                            SystemLogic.omniStrips.add("Roo6");
+                            SystemLogic.omniStrips.add("Roo7");
+                            SystemLogic.omniStrips.add("Roo8");
+                            SystemLogic.omniStrips.add("Roo9");
+                        }
                         break;
                     case "10":
-                        SystemLogic.otherStrips.add("Roo1");
-                        SystemLogic.otherStrips.add("Roo2");
-                        SystemLogic.otherStrips.add("Roo3");
-                        SystemLogic.otherStrips.add("Roo4");
-                        SystemLogic.otherStrips.add("Roo5");
-                        SystemLogic.otherStrips.add("Roo6");
-                        SystemLogic.otherStrips.add("Roo7");
-                        SystemLogic.otherStrips.add("Roo8");
-                        SystemLogic.otherStrips.add("Roo9");
-                        SystemLogic.otherStrips.add("Roo10");
+                        if (roomOnStage.isSelected()){
+                            SystemLogic.extraStrips.add("Roo1");
+                            SystemLogic.extraStrips.add("Roo2");
+                            SystemLogic.extraStrips.add("Roo3");
+                            SystemLogic.extraStrips.add("Roo4");
+                            SystemLogic.extraStrips.add("Roo5");
+                            SystemLogic.extraStrips.add("Roo6");
+                            SystemLogic.extraStrips.add("Roo7");
+                            SystemLogic.extraStrips.add("Roo8");
+                            SystemLogic.extraStrips.add("Roo9");
+                            SystemLogic.extraStrips.add("Roo10");
+                        }else {
+                            SystemLogic.omniStrips.add("Roo1");
+                            SystemLogic.omniStrips.add("Roo2");
+                            SystemLogic.omniStrips.add("Roo3");
+                            SystemLogic.omniStrips.add("Roo4");
+                            SystemLogic.omniStrips.add("Roo5");
+                            SystemLogic.omniStrips.add("Roo6");
+                            SystemLogic.omniStrips.add("Roo7");
+                            SystemLogic.omniStrips.add("Roo8");
+                            SystemLogic.omniStrips.add("Roo9");
+                            SystemLogic.omniStrips.add("Roo10");
+                        }
                         break;
                 }
                 buttonNext.setEnabled(true);
-                otherCannels.setText("Other Channels: " + (SystemLogic.otherStrips.size()));
+                otherCannels.setText("Other Channels: " + ((SystemLogic.omniStrips.size()+SystemLogic.extraStrips.size())));
             }
         });
 //Button apply end
@@ -541,7 +919,7 @@ public class Others extends JFrame implements ItemListener {
         buttonNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DefineInstruments.buttonOthers.setText("Others:" + SystemLogic.otherStrips.size());
+                DefineInstruments.buttonOthers.setText("Others:" + (SystemLogic.omniStrips.size()+SystemLogic.extraStrips.size()));
                 DefineInstruments.numChannels.setText("All Channels:" + SystemLogic.CommonChannels());
                 terminateThisWindow();
             }

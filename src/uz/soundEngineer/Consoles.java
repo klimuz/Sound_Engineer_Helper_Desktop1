@@ -263,6 +263,7 @@ public class Consoles extends JFrame {
                 GenericMixer genericMixer = new GenericMixer();
             genericMixer.setMixerName(consoleName);
                 genericMixer.populateInputs();
+                System.out.println(SystemLogic.extraStrips);
             }
         });
 //button next end
