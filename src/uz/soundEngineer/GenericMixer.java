@@ -3,8 +3,8 @@ package uz.soundEngineer;
 import java.util.ArrayList;
 
 public class GenericMixer {
-    private ArrayList inputStrips = new ArrayList(SystemLogic.CommonChannels());
-    private ArrayList outputStrips = new ArrayList(SystemLogic.outStrips.size());
+    private ArrayList<String> inputStrips = new ArrayList(SystemLogic.CommonChannels());
+    private ArrayList<String> outputStrips = new ArrayList(SystemLogic.outStrips.size());
 
     private String mixerName;
     public String getMixerName() {
@@ -25,6 +25,30 @@ public class GenericMixer {
         inputStrips.addAll(SystemLogic.backVocStrips);
         inputStrips.addAll(SystemLogic.extraStrips);
         inputStrips.addAll(SystemLogic.omniStrips);
+
+        System.out.println(inputStrips);
+//Solve odd-even for stereo sources
+        if (inputStrips.contains("BasL") && (inputStrips.indexOf("BasL")%2 == 0)){
+            if (inputStrips.contains("EGtr")){
+                inputStrips.remove("EGtr");
+                inputStrips.add(inputStrips.indexOf("BasL"), "EGtr");
+            }else if (inputStrips.contains("EGt1")){
+                inputStrips.remove("EGt1");
+                inputStrips.add(inputStrips.indexOf("BasL"), "EGt1");
+            }else if (inputStrips.contains("AGtr")){
+                inputStrips.remove("AGtr");
+                inputStrips.add(inputStrips.indexOf("BasL"), "AGtr");
+            }else if (inputStrips.contains("AGt1")){
+                inputStrips.remove("AGt1");
+                inputStrips.add(inputStrips.indexOf("BasL"), "AGt1");
+            }else if (inputStrips.contains("Syn1")){
+                inputStrips.remove("Syn1");
+                inputStrips.add(inputStrips.indexOf("BasL"), "Syn1");
+            }else if (inputStrips.contains("Syn2")){
+                inputStrips.remove("Syn2");
+                inputStrips.add(inputStrips.indexOf("BasL"), "Syn2");
+            }
+        }
         System.out.println(inputStrips);
     }
     public void populateOutputs(){
