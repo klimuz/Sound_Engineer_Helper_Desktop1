@@ -136,10 +136,13 @@ public class Guitars extends JFrame implements ItemListener {
         }
         container.add(elGtrNumber);
         acGtrNumber.addItemListener(this);
-        acGtrNumber.addItem("1 Mono");
-        acGtrNumber.addItem("2 Mono");
-        acGtrNumber.addItem("1 Stereo");
-        acGtrNumber.addItem("2 Stereo");
+        acGtrNumber.addItem("1 Mono");//"AGtr"
+        acGtrNumber.addItem("2 Mono");//"AGt1"&&"AGt2"&&!"AG3L"
+        acGtrNumber.addItem("1 Stereo");//"AGtL"
+        acGtrNumber.addItem("2 Stereo");//"AG1L"&&"AG2L"
+        acGtrNumber.addItem("1M 1S");//"AGt1"&&"AG2L"&&!"AG3L"
+        acGtrNumber.addItem("1M 2S");//"AGt1"&&"AG3L"&&!"AGt2"
+        acGtrNumber.addItem("2M 1S");//"AGt2"&&"AG3L"
         acGtrNumber.addItem("No One");
         acGtrNumber.setBounds(600, 130, 120, 20);
         container.add(acGtrNumber);
@@ -147,12 +150,21 @@ public class Guitars extends JFrame implements ItemListener {
         guitarChannels.setBounds(650, 5, 150, 25);//label
         if (SystemLogic.guitarStrips.contains("AGtr")){
             acGtrNumber.setSelectedItem("1 Mono");
-        }else if (SystemLogic.guitarStrips.contains("AGt1") && SystemLogic.guitarStrips.contains("AGt2")){
+        }else if (SystemLogic.guitarStrips.contains("AGt1") && SystemLogic.guitarStrips.contains("AGt2") &&
+                !SystemLogic.guitarStrips.contains("AG3L")){
             acGtrNumber.setSelectedItem("2 Mono");
         }else if (SystemLogic.guitarStrips.contains("AGtL")){
-           acGtrNumber.setSelectedItem("1 Stereo");
+            acGtrNumber.setSelectedItem("1 Stereo");
         }else if (SystemLogic.guitarStrips.contains("AG1L") && SystemLogic.guitarStrips.contains("AG2L")){
             acGtrNumber.setSelectedItem("2 Stereo");
+        }else if (SystemLogic.guitarStrips.contains("AGt1") && SystemLogic.guitarStrips.contains("AG2L") &&
+                !SystemLogic.guitarStrips.contains("AG3L")){
+            acGtrNumber.setSelectedItem("1M 1S");
+        }else if (SystemLogic.guitarStrips.contains("AGt1") && SystemLogic.guitarStrips.contains("AG3L") &&
+                !SystemLogic.guitarStrips.contains("AGt2")){
+            acGtrNumber.setSelectedItem("1M 2S");
+        }else if (SystemLogic.guitarStrips.contains("AGt2") && SystemLogic.guitarStrips.contains("AG3L")){
+            acGtrNumber.setSelectedItem("2M 1S");
         }else {
             acGtrNumber.setSelectedItem("No One");
         }
@@ -233,7 +245,24 @@ public class Guitars extends JFrame implements ItemListener {
                             SystemLogic.guitarStrips.add("AG2L");
                             SystemLogic.guitarStrips.add("AG2R");
                             break;
-
+                        case "1M 1S":
+                            SystemLogic.guitarStrips.add("AGt1");
+                            SystemLogic.guitarStrips.add("AG2L");
+                            SystemLogic.guitarStrips.add("AG2R");
+                            break;
+                        case "1M 2S":
+                            SystemLogic.guitarStrips.add("AGt1");
+                            SystemLogic.guitarStrips.add("AG2L");
+                            SystemLogic.guitarStrips.add("AG2R");
+                            SystemLogic.guitarStrips.add("AG3L");
+                            SystemLogic.guitarStrips.add("AG3R");
+                            break;
+                        case "2M 1S":
+                            SystemLogic.guitarStrips.add("AGt1");
+                            SystemLogic.guitarStrips.add("AGt2");
+                            SystemLogic.guitarStrips.add("AG3L");
+                            SystemLogic.guitarStrips.add("AG3R");
+                            break;
                     }
                     buttonNext.setEnabled(true);
                     guitarChannels.setText("Guitar Channels: " + SystemLogic.guitarStrips.size());
